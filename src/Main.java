@@ -183,6 +183,8 @@ public class Main extends Application {
         if((ball.getY() > 550) && ((ball.getX() < platform.getX()) || (ball.getX() > platform.getX() + 140))){
             gameIsStop = true;
             lives--;
+            ball.setDx(0);
+            ball.setDy(0);
             if(lives == 0){
                 gameIsOver = true;
             }

@@ -55,6 +55,10 @@ public class Ball {
         this.dy = dy;
     }
 
+    public void setDx(double dx) {
+        this.dx = dx;
+    }
+
     public void reversX() {
         dx = -dx;
     }

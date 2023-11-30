@@ -150,7 +150,10 @@ public class Main extends Application {
         if((ball.getX() + 10 > WIDTH)||(ball.getX() - 10 < 0)) {ball.reversX();}
         if(ball.getY() - 10 < 0) {ball.reversY();}
         if((ball.getY() > 520 - 10) && (ball.getX() > platform.getX()) && (ball.getX() < platform.getX() + 140)){
-            ball.reversY();
+            //ball.reversY();
+            double x = ball.getX() - platform.getX();
+            ball.setDy(-1.2 * Math.cos(x / 140 - 0.5));
+            ball.setDx(1.2 * Math.sin(x / 140 - 0.5));
         }
 
         if((ball.getY() > 550) && ((ball.getX() < platform.getX()) || (ball.getX() > platform.getX() + 140))){

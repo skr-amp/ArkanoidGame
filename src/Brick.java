@@ -3,7 +3,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Brick {
-    double x, y;
+    private double x, y;
     Rectangle brickView = new Rectangle();
     public Brick(double x, double y, Pane pane){
         this.x = x;

@@ -3,8 +3,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Platform {
-    double x, y;
-    double velocity = 25;
+    private double x, y;
+    private double velocity = 25;
     Rectangle platformView = new Rectangle();
     public Platform(Pane pane) {
         this.x = 400 - 70;
@@ -38,13 +38,5 @@ public class Platform {
 
     public double getX() {
         return x;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public void setY(double y) {
-        this.y = y;
     }
 }

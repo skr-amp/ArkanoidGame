@@ -43,14 +43,6 @@ public class Ball {
         return y;
     }
 
-    public double getDx() {
-        return dx;
-    }
-
-    public double getDy() {
-        return dy;
-    }
-
     public void setDy(double dy) {
         this.dy = dy;
     }

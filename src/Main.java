@@ -52,6 +52,15 @@ public class Main extends Application {
         gameOverText.setText("Вы проиграли:(\nДля начала новой игры\nнажмите ENTER");
         gameOverPane.getChildren().add(gameOverText);
 
+        Pane winPane = new Pane();
+        Scene winScene = new Scene(winPane, WIDTH, HEIGHT);
+        Text winText = new Text();
+        winText.setX(150);
+        winText.setY(250);
+        winText.setFont(new Font(40));
+        winText.setTextAlignment(TextAlignment.CENTER);
+        winPane.getChildren().add(winText);
+
         stage.setScene(scene);
         stage.setTitle("Arkanoid");
         stage.setResizable(false);
@@ -64,6 +73,10 @@ public class Main extends Application {
             public void handle(ActionEvent actionEvent) {
                 if(gameIsOver){
                     stage.setScene(gameOverScene);
+                }
+                if(bricks.size() == 0) {
+                    winText.setText("Вы выиграли:)\nНабрали очков: " + score + "\nДля начала новой игры\nнажмите ENTER");
+                    stage.setScene(winScene);
                 }
                 collideCheck(ball, platform, bricks);
                 ball.move();
@@ -113,13 +126,25 @@ public class Main extends Application {
                 }
             }
         });
+
+        winScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode() == KeyCode.ENTER) {
+                    gameIsOver = false;
+                    gameIsStop = true;
+                    initGame(pane);
+                    stage.setScene(scene);
+                }
+            }
+        });
     }
 
     public void initGame(Pane pane){
         gameIsStop = true;
         gameIsOver = false;
         score = 0;
-        lives = 1;
+        lives = 3;
         pane.getChildren().clear();
         scoreView = new Text();
         scoreView.setX(620);
@@ -150,7 +175,6 @@ public class Main extends Application {
         if((ball.getX() + 10 > WIDTH)||(ball.getX() - 10 < 0)) {ball.reversX();}
         if(ball.getY() - 10 < 0) {ball.reversY();}
         if((ball.getY() > 520 - 10) && (ball.getX() > platform.getX()) && (ball.getX() < platform.getX() + 140)){
-            //ball.reversY();
             double x = ball.getX() - platform.getX();
             ball.setDy(-1.2 * Math.cos(x / 140 - 0.5));
             ball.setDx(1.2 * Math.sin(x / 140 - 0.5));

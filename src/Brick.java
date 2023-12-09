@@ -4,14 +4,16 @@ import javafx.scene.shape.Rectangle;
 
 public class Brick {
     private double x, y;
+    final int WIDTH = 60;
+    final int HEIGHT = 20;
     Rectangle brickView = new Rectangle();
     public Brick(double x, double y, Pane pane){
         this.x = x;
         this.y = y;
         brickView.setX(this.x);
         brickView.setY(this.y);
-        brickView.setWidth(60);
-        brickView.setHeight(20);
+        brickView.setWidth(WIDTH);
+        brickView.setHeight(HEIGHT);
         brickView.setArcWidth(10);
         brickView.setFill(Color.WHITE);
         brickView.setStroke(Color.BLACK);

@@ -3,6 +3,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class Ball {
+    final int RADIUS = 10;
     private double x, y;
     private double dx, dy;
 
@@ -49,6 +50,14 @@ public class Ball {
 
     public void setDx(double dx) {
         this.dx = dx;
+    }
+
+    public double getDx() {
+        return dx;
+    }
+
+    public double getDy() {
+        return dy;
     }
 
     public void reversX() {

@@ -195,24 +195,88 @@ public class Main extends Application {
         Iterator<Brick> iterator = bricks.iterator();
         while (iterator.hasNext()){
             Brick brick = iterator.next();
-            if((ball.getY() + 10 > brick.getY()) &&
-                    (ball.getY() - 10 < brick.getY() + 20) &&
-                    (ball.getX() + 10 > brick.getX()) &&
-                    (ball.getX() - 10 < brick.getX() + 60)) {
-                if (Math.abs(brick.getY() + 10 - ball.getY()) > Math.abs(brick.getX()) + 30 - ball.getX()) {
-                    ball.reversY();
-                    brick.setInvisible();
-                    bricks.remove(brick);
-                    score += 20;
-                    break;
-                } else {
-                    ball.reversX();
-                    brick.setInvisible();
-                    bricks.remove(brick);
-                    score += 20;
-                    break;
-                }
-                }
+
+            if(ball.getDx() > 0 &&
+               brick.getY() < ball.getY() && ball.getY() < brick.getY() + brick.HEIGHT &&
+               ball.getX() < brick.getX() && ball.getX()  + ball.RADIUS > brick.getX()){
+                ball.reversX();
+                brick.setInvisible();
+                bricks.remove(brick);
+                score += 20;
+                break;
+            }
+            if(ball.getDx() < 0 &&
+               brick.getY() < ball.getY() && ball.getY() < brick.getY() + brick.HEIGHT &&
+               ball.getX() > brick.getX() + brick.WIDTH && ball.getX() - ball.RADIUS < brick.getX() + brick.WIDTH){
+                ball.reversX();
+                brick.setInvisible();
+                bricks.remove(brick);
+                score += 20;
+                break;
+            }
+            if(ball.getDy() > 0 &&
+               brick.getX() < ball.getX() && ball.getX() < brick.getX() + brick.WIDTH &&
+               ball.getY() < brick.getY() && ball.getY() + ball.RADIUS > brick.getY()){
+                ball.reversY();
+                brick.setInvisible();
+                bricks.remove(brick);
+                score += 20;
+                break;
+            }
+            if(ball.getDy() < 0 &&
+               brick.getX() < ball.getX() && ball.getX() < brick.getX() + brick.WIDTH &&
+               ball.getY() > brick.getY() + brick.HEIGHT && ball.getY() - ball.RADIUS < brick.getY() + brick.HEIGHT){
+                ball.reversY();
+                brick.setInvisible();
+                bricks.remove(brick);
+                score += 20;
+                break;
+            }
+
+            if(Math.pow(brick.getX() - ball.getX(), 2) + Math.pow(brick.getY() - ball.getY(), 2) < Math.pow(ball.RADIUS, 2)){
+                double deltaX = ball.getX() - brick.getX();
+                double deltaY = ball.getY() - brick.getY();
+                double l = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                ball.setDx(1.2 * (deltaX) / l);
+                ball.setDy(1.2 * (deltaY) / l);
+                brick.setInvisible();
+                bricks.remove(brick);
+                score += 20;
+                break;
+            }
+            if(Math.pow(brick.getX() + brick.WIDTH - ball.getX(), 2) + Math.pow(brick.getY() - ball.getY(), 2) < Math.pow(ball.RADIUS, 2)){
+                double deltaX = ball.getX() - (brick.getX() + brick.WIDTH);
+                double deltaY = ball.getY() - brick.getY();
+                double l = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                ball.setDx(1.2 * (deltaX) / l);
+                ball.setDy(1.2 * (deltaY) / l);
+                brick.setInvisible();
+                bricks.remove(brick);
+                score += 20;
+                break;
+            }
+            if(Math.pow(brick.getX() + brick.WIDTH - ball.getX(), 2) + Math.pow(brick.getY() + brick.HEIGHT - ball.getY(), 2) < Math.pow(ball.RADIUS, 2)){
+                double deltaX = ball.getX() - (brick.getX() + brick.WIDTH);
+                double deltaY = ball.getY() - (brick.getY() + brick.HEIGHT);
+                double l = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                ball.setDx(1.2 * (deltaX) / l);
+                ball.setDy(1.2 * (deltaY) / l);
+                brick.setInvisible();
+                bricks.remove(brick);
+                score += 20;
+                break;
+            }
+            if(Math.pow(brick.getX() - ball.getX(), 2) + Math.pow(brick.getY() + brick.HEIGHT - ball.getY(), 2) < Math.pow(ball.RADIUS, 2)){
+                double deltaX = ball.getX() - brick.getX();
+                double deltaY = ball.getY() - (brick.getY() + brick.HEIGHT);
+                double l = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                ball.setDx(1.2 * (deltaX) / l);
+                ball.setDy(1.2 * (deltaY) / l);
+                brick.setInvisible();
+                bricks.remove(brick);
+                score += 20;
+                break;
+            }
         }
     }
 }

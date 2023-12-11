@@ -15,8 +15,8 @@ public class Brick {
         brickView.setWidth(WIDTH);
         brickView.setHeight(HEIGHT);
         brickView.setArcWidth(10);
-        brickView.setFill(Color.WHITE);
-        brickView.setStroke(Color.BLACK);
+        brickView.setFill(Color.TRANSPARENT);
+        brickView.setStroke(Color.WHITE);
         brickView.setStrokeWidth(3);
 
         pane.getChildren().add(brickView);

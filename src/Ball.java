@@ -15,9 +15,9 @@ public class Ball {
         this.dy = 0;
         ballView.setCenterX(this.x);
         ballView.setCenterY(this.y);
-        ballView.setRadius(10);
-        ballView.setFill(Color.WHITE);
-        ballView.setStroke(Color.BLACK);
+        ballView.setRadius(RADIUS);
+        ballView.setFill(Color.TRANSPARENT);
+        ballView.setStroke(Color.WHITE);
         ballView.setStrokeWidth(3);
         pane.getChildren().add(ballView);
     }

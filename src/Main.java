@@ -6,10 +6,12 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -27,6 +29,14 @@ public class Main extends Application {
     int lives;
     boolean gameIsStop;
     boolean gameIsOver;
+
+    Image image = new Image("res/background.jpg");
+    BackgroundImage backgroundImage = new BackgroundImage(image,
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundPosition.CENTER,
+            BackgroundSize.DEFAULT);
+
     Ball ball;
     Platform platform;
     Set<Brick> bricks;
@@ -74,7 +84,7 @@ public class Main extends Application {
                 if(gameIsOver){
                     stage.setScene(gameOverScene);
                 }
-                if(bricks.size() == 0) {
+                if(bricks.isEmpty()) {
                     winText.setText("Вы выиграли:)\nНабрали очков: " + score + "\nДля начала новой игры\nнажмите ENTER");
                     stage.setScene(winScene);
                 }
@@ -146,16 +156,19 @@ public class Main extends Application {
         score = 0;
         lives = 3;
         pane.getChildren().clear();
+        pane.setBackground(new Background(backgroundImage));
         scoreView = new Text();
         scoreView.setX(620);
         scoreView.setY(580);
         scoreView.setFont(new Font(30));
+        scoreView.setFill(Color.WHITE);
         scoreView.setText("Очки: " + score);
         pane.getChildren().add(scoreView);
         livesView = new Text();
         livesView.setX(30);
         livesView.setY(580);
         livesView.setFont(new Font(30));
+        livesView.setFill(Color.WHITE);
         livesView.setText("Жизни: " + lives);
         pane.getChildren().add(livesView);
 
